@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\Character;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -41,6 +41,16 @@ class RegisterController extends Controller
     }
 
     /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        return view('auth.login');
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -49,9 +59,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'register.name' => 'required|string|max:255',
+            'register.password' => 'required|string|min:6|max:20|confirmed',
+            'register.watchword' => 'required|in:あいことば'
         ]);
     }
 
@@ -59,14 +69,28 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Character
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        return Character::create([
+            'name' => $data['register']['name'],
+            'nickname' => $data['register']['name'],
+            'password' => Hash::make($data['register']['password']),
+            'str' => 5,
+            'vit' => 5,
+            'dex' => 5,
+            'agi' => 5,
+            'int' => 5,
+            'mnd' => 5,
+            'con' => 5,
+            'dev' => 5,
+            'dir' => 5,
+            'exe' => 5,
+            'det' => 5,
+            'res' => 5,
+            'luc' => 5,
+            'gra' => 5
         ]);
     }
 }

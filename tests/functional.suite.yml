@@ -11,3 +11,8 @@ modules:
         # add a framework module here
         - \Helper\Functional
         - Laravel5
+        - Db
+    config:
+        Db:
+            cleanup: false
+            populate: true

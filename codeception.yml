@@ -8,3 +8,12 @@ actor_suffix: Tester
 extensions:
     enabled:
         - Codeception\Extension\RunFailed
+modules:
+    config:
+        Db:
+            dsn: 'mysql:host=localhost;dbname=teiki;charaset=utf8'
+            user: 'teiki_admin'
+            password: '12345'
+            cleanup: true
+            populate: true
+            dump: tests/_data/dump.sql
