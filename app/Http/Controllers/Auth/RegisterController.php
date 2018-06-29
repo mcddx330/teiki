@@ -59,7 +59,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'register.name' => 'required|string|max:255',
+            'register.name' => 'required|string|max:50',
             'register.password' => 'required|string|min:6|max:20|confirmed',
             'register.watchword' => 'required|in:あいことば'
         ]);
@@ -85,12 +85,12 @@ class RegisterController extends Controller
             'mnd' => 5,
             'con' => 5,
             'dev' => 5,
-            'dir' => 5,
-            'exe' => 5,
-            'det' => 5,
-            'res' => 5,
-            'luc' => 5,
-            'gra' => 5
+            'dir' => 3,
+            'exe' => 3,
+            'det' => 3,
+            'res' => 3,
+            'luc' => 0,
+            'gra' => 0
         ]);
     }
 }

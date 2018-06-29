@@ -17,6 +17,13 @@ class loginCest
         $I->amOnPage('/');
         $I->seeCurrentUrlEquals('/login');
 
+        $I->expectTo('ヘッダメニューの表示が正しいこと');
+        $I->dontSeeLink('プロフィール');
+        $I->dontSeeLink('チャット');
+        $I->seeLink('キャラリスト');
+        $I->seeLink('新規登録・ログイン');
+        $I->dontSeeLink('ログアウト');
+
         $I->expectTo('ログインフォームの表示が正しいこと');
         $I->see('ログイン', 'div.card-header');
         $I->see('Eno.', 'label[for="id"]');
@@ -53,7 +60,7 @@ class loginCest
 
         $I->expectTo('入力文字数の確認');
         $value = '';
-        for ($i=0; $i<=255; $i++) {
+        for ($i=0; $i<=50; $i++) {
             $value .= 'あ';
         }
         $I->fillField('register[name]', $value);
@@ -64,7 +71,7 @@ class loginCest
         $I->fillField('register[password]', $value);
         $I->click('新規登録');
         $I->seeCurrentUrlEquals('/login');
-        $I->see('255文字以下で入力してください。', '.register_name');
+        $I->see('50文字以下で入力してください。', '.register_name');
         $I->see('6文字以上で入力してください。', '.register_password');
         $value = '';
         for ($i=0; $i<=20; $i++) {
@@ -100,7 +107,7 @@ class loginCest
         $I->seeCurrentUrlEquals('/');
 
         $I->expectTo('データが登録されていること');
-        $I->seeRecord('characters', ['id' => 2, 'name' => 'テスト1', 'nickname' => 'テスト1']);
+        $I->seeRecord('characters', ['id' => 11, 'name' => 'テスト1', 'nickname' => 'テスト1']);
     }
 
     public function loginNgTest(FunctionalTester $I)
@@ -141,5 +148,12 @@ class loginCest
         $I->fillField('password', 'password');
         $I->click('ログイン');
         $I->seeCurrentUrlEquals('/');
+
+        $I->expectTo('ヘッダメニューの表示が正しいこと');
+        $I->seeLink('プロフィール');
+        $I->seeLink('チャット');
+        $I->seeLink('キャラリスト');
+        $I->seeLink('ログアウト');
+        $I->dontSeeLink('新規登録・ログイン');
     }
 }

@@ -19,6 +19,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Overpass+Mono" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -42,14 +44,14 @@
                         <!-- Authentication Links -->
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('プロフィール') }}</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('プロフィール') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">{{ __('チャット') }}</a>
                             </li>
                         @endauth
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('キャラリスト') }}</a>
+                                <a class="nav-link" href="{{ route('character.list') }}">{{ __('キャラリスト') }}</a>
                             </li>
                         @guest
                             <li class="nav-item">

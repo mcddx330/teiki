@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 
+-- Generation Time:
 -- サーバのバージョン： 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -31,9 +31,9 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `characters`;
 CREATE TABLE `characters` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nickname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nickname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `str` smallint(5) UNSIGNED NOT NULL,
   `vit` smallint(5) UNSIGNED NOT NULL,
   `dex` smallint(5) UNSIGNED NOT NULL,
@@ -48,6 +48,9 @@ CREATE TABLE `characters` (
   `res` smallint(5) UNSIGNED NOT NULL,
   `luc` smallint(5) UNSIGNED NOT NULL,
   `gra` smallint(5) UNSIGNED NOT NULL,
+  `profile_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_mini` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_txt` text COLLATE utf8mb4_unicode_ci,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -58,8 +61,17 @@ CREATE TABLE `characters` (
 -- テーブルのデータのダンプ `characters`
 --
 
-INSERT INTO `characters` (`id`, `name`, `nickname`, `password`, `str`, `vit`, `dex`, `agi`, `int`, `mnd`, `con`, `dev`, `dir`, `exe`, `det`, `res`, `luc`, `gra`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'テストキャラクター', 'テスト', '$2y$10$rQBdZnDyhrrrEVXni3P5SuJmtJjPAgv5wwhAm5iZumo1VR7fVa97a', 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, NULL, '2018-06-29 11:01:32', '2018-06-29 11:01:32', NULL);
+INSERT INTO `characters` (`id`, `name`, `nickname`, `password`, `str`, `vit`, `dex`, `agi`, `int`, `mnd`, `con`, `dev`, `dir`, `exe`, `det`, `res`, `luc`, `gra`, `profile_img`, `profile_mini`, `profile_txt`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'テストキャラクター1', 'テスト1', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, 'ひとこと自己紹介', '自己紹介の\nサンプル\nです。', 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(2, 'テストキャラクター2', 'テスト2', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, 'てすとてすと', NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(3, 'テストキャラクター3', 'テスト3', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, '', NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(4, 'テストキャラクター4', 'テスト4', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, NULL, NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(5, 'テストキャラクター5', 'テスト5', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, NULL, NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(6, 'テストキャラクター6', 'テスト6', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, NULL, NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(7, 'テストキャラクター7', 'テスト7', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, NULL, NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(8, 'テストキャラクター8', 'テスト8', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, NULL, NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(9, 'テストキャラクター9', 'テスト9', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, NULL, NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(10, 'テストキャラクター10', 'テスト10', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, NULL, NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL);
 
 -- --------------------------------------------------------
 

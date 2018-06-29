@@ -15,9 +15,9 @@ class CreateCharactersTable extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('nickname');
-            $table->string('password');
+            $table->string('name', 50);
+            $table->string('nickname', 50);
+            $table->string('password', 60);
             $table->unsignedSmallInteger('str');
             $table->unsignedSmallInteger('vit');
             $table->unsignedSmallInteger('dex');
@@ -32,6 +32,9 @@ class CreateCharactersTable extends Migration
             $table->unsignedSmallInteger('res');
             $table->unsignedSmallInteger('luc');
             $table->unsignedSmallInteger('gra');
+            $table->string('profile_img')->nullable();
+            $table->string('profile_mini', 100)->nullable();
+            $table->text('profile_txt')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
