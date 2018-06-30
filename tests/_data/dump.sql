@@ -62,8 +62,8 @@ CREATE TABLE `characters` (
 --
 
 INSERT INTO `characters` (`id`, `name`, `nickname`, `password`, `str`, `vit`, `dex`, `agi`, `int`, `mnd`, `con`, `dev`, `dir`, `exe`, `det`, `res`, `luc`, `gra`, `profile_img`, `profile_mini`, `profile_txt`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'テストキャラクター1', 'テスト1', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, 'ひとこと自己紹介', '自己紹介の\nサンプル\nです。', 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
-(2, 'テストキャラクター2', 'テスト2', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, 'てすとてすと', NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(1, 'テストキャラクター1', 'テスト1', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, 'ひとこと自己紹介', '自己紹介の\nサンプル\nです。', '0ID7vjargQ0am19aTv2PaQkhMvqcfKMfVqIWogtNjx464WF6hYn6zUe8Uhqv', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
+(2, 'テストキャラクター2', 'テスト2', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, 'てすとてすと', NULL, 'USU2C62ad4uB7kinzIVadBscNqsabmYnvsHLssO8fnW0g1p5oaT8dpVJinQz', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
 (3, 'テストキャラクター3', 'テスト3', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, '', NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
 (4, 'テストキャラクター4', 'テスト4', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, NULL, NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
 (5, 'テストキャラクター5', 'テスト5', '$2y$10$OEHpjBT5spndUoQFSvpKFuL8pU1xsugyII3hQuhWo6DUW9P5wY3MG', 5, 5, 5, 5, 5, 5, 5, 5, 3, 3, 3, 3, 0, 0, NULL, NULL, NULL, 'DERRVt6rHk1iDipoyibfzxVZ4aN0KWJeoiXmyWlgZvKZ75VWnZfEnBQxLtou', '2018-06-29 15:38:35', '2018-06-29 15:38:35', NULL),
@@ -83,12 +83,29 @@ DROP TABLE IF EXISTS `chats`;
 CREATE TABLE `chats` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `own_chat_id` bigint(20) UNSIGNED NOT NULL,
-  `res_chat_id` bigint(20) UNSIGNED NOT NULL,
-  `char_id` int(11) NOT NULL,
+  `res_chat_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `res_char_id` int(10) UNSIGNED DEFAULT NULL,
+  `char_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `chat_txt` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+--
+-- テーブルのデータのダンプ `chats`
+--
+
+INSERT INTO `chats` (`id`, `own_chat_id`, `res_chat_id`, `res_char_id`, `char_id`, `name`, `icon_img`, `chat_txt`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, NULL, NULL, 1, 'テスト', '/img/no_image_icon.png', '発言テスト', '2018-06-30 11:34:28', '2018-06-30 11:34:28', NULL),
+(2, 2, NULL, NULL, 1, 'テストキャラクター', '/img/no_image_icon.png', 'テスト\r\nテスト\r\nテスト', '2018-06-30 11:34:49', '2018-06-30 11:34:49', NULL),
+(3, 2, 2, 1, 1, 'テスト1', '/img/no_image_icon.png', '返信テスト', '2018-06-30 11:34:57', '2018-06-30 11:34:57', NULL),
+(4, 2, 3, 1, 2, 'テスト２', '/img/no_image_icon.png', '返信テスト２', '2018-06-30 12:28:35', '2018-06-30 12:28:35', NULL),
+(5, 2, 4, 2, 3, 'テスト３', '/img/no_image_icon.png', '返信テスト３', '2018-06-30 12:29:03', '2018-06-30 12:29:03', NULL),
+(6, 1, 1, 1, 3, 'テスト３', '/img/no_image_icon.png', 'ツリーテスト', '2018-06-30 13:57:53', '2018-06-30 13:57:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -141,13 +158,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`

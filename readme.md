@@ -6,7 +6,7 @@
 - ソースコード全公開しておくので、好き勝手に中身見ちゃってください。
 - このプロジェクトを丸ごとそのまま運用で使われる想定はしていないです。後からmigrationファイル書き換えとかやっちゃうのでDBのデータがご臨終する。
 
-フレームワークにLaravel、テストツールにCodeceptionを使用しています。
+フレームワークにLaravel（ http://laravel.jp/ ）、テストツールにCodeception（ https://codeception.com/ ）を使用しています。
 
 
 ## 使い方メモ
@@ -14,7 +14,7 @@
 XAMPP環境で動作確認済。
 
 - コマンドラインからteikiディレクトリ直下に移動
-- Composer をインストール
+- Composer（ https://getcomposer.org/ ） をインストール
 - コマンドラインから `composer install` を実行（Laravelで使うファイルがvenderディレクトリの下にインストールされる）
 - コマンドラインから `cp .env.example .env` を実行（.envファイルがコピーされる）
 - .envファイルの中を修正（下記はローカル環境で、mysqlにteikiデータベースとteiki_adminユーザを追加した場合の例）
@@ -43,3 +43,14 @@ ServerName dev.laravel.teiki
 </VirtualHost>
 ```
 - ブラウザから`http://localhost`へアクセスして、ページが表示されればOK
+
+
+## 自動テストのやり方
+
+XAMPP環境で動作確認済。
+
+- コマンドラインからteikiディレクトリ直下に移動
+- コマンドラインから `php codecept.phar run` を実行（コマンドラインにテストの結果が表示される）
+- オプションを付けてコマンドラインから `php codecept.phar run --html` を使うとテスト結果が/tests/_output/report.htmlファイルに出力される
+- コケたテストのエビデンスも/tests/_output/ディレクトリの下に出てくる
+- DBの中がテストデータに置き換えられるから、テストはリリース後の本番環境でやっちゃだめだよ！！

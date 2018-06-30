@@ -1,6 +1,21 @@
+.mono-space {
+    font-family: 'Overpass Mono', monospace;
+}
+
+/* キャラクター */
 .chara-box {
     width: 775px;
 }
-.mono-space {
-    font-family: 'Overpass Mono', monospace;
+
+/* チャット */
+.chat-icon-area {
+    width: 85px;
+}
+.chat-res-box {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+.bm-res-box {
+    margin-bottom: 250px;
 }

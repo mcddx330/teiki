@@ -24,7 +24,7 @@ return [
     'before'               => 'The :attribute must be a date before :date.',
     'before_or_equal'      => 'The :attribute must be a date before or equal to :date.',
     'between'              => [
-        'numeric' => 'The :attribute must be between :min and :max.',
+        'numeric' => ':minから:maxまでの数値を入力してください。',
         'file'    => 'The :attribute must be between :min and :max kilobytes.',
         'string'  => 'The :attribute must be between :min and :max characters.',
         'array'   => 'The :attribute must have between :min and :max items.',
@@ -127,6 +127,15 @@ return [
     'custom' => [
         'register.watchword' => [
             'in' => '合言葉が不正です。',
+        ],
+        'chat.icon' => [
+            'between' => 'アイコンの選択が不正です。',
+        ],
+        'res.icon' => [
+            'between' => 'アイコンの選択が不正です。',
+        ],
+        'res.res_id' => [
+            'required' => '返信先が指定されていません。',
         ],
     ],
 

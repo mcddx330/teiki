@@ -25,14 +25,17 @@ class CharacterController extends Controller
      */
     public function index()
     {
+        // キャラクター一覧を、5人分ずつページングして取得
         $characters = Character::paginate(5);
         return view('character/list', compact('characters'));
     }
 
     public function detail($id)
     {
+        // Enoからキャラクターを検索
         $character = Character::find($id);
         if (is_null($character)) {
+            // データがなければ404エラー
             abort('404');
         }
         return view('character/detail', compact('character'));

@@ -12,6 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -47,7 +48,7 @@
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('プロフィール') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('チャット') }}</a>
+                                <a class="nav-link" href="{{ route('chat.list') }}">{{ __('チャット') }}</a>
                             </li>
                         @endauth
                             <li class="nav-item">
@@ -71,5 +72,6 @@
             @yield('content')
         </main>
     </div>
+    @yield('js_bottom')
 </body>
 </html>
