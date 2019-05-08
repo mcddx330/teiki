@@ -2,30 +2,45 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Character extends Authenticatable
-{
+class Character extends Authenticatable {
     use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
-        'name', 'nickname', 'password', 'str', 'vit', 'dex', 'agi', 'int', 'mnd', 'con', 'dev', 'dir', 'exe', 'det', 'res', 'luc', 'gra'
+        'name_first',
+        'name_last',
+        'is_not_foreigner',
+        'profile_title',
+        'password',
+        'level',
+        'hp',
+        'attack',
+        'defense',
     ];
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * The attributes that should be hidden for arrays.
-     *
      * @var array
      */
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * フルネーム
+     * @return string
+     */
+    public function getNameFullAttribute(): string {
+        return ((bool)$this->is_not_foreigner)
+            ? sprintf('%s・%s', $this->name_last, $this->name_first)
+            : sprintf('%s・%s', $this->name_first, $this->name_last);
+    }
 }

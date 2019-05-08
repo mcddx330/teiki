@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateCharactersTable extends Migration
 {
@@ -15,29 +15,23 @@ class CreateCharactersTable extends Migration
     {
         Schema::create('characters', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50);
-            $table->string('nickname', 50);
+            $table->string('name_first', 16);
+            $table->string('name_last', 16);
+            $table->boolean('is_not_foreigner')->default(0);
             $table->string('password', 60);
-            $table->unsignedSmallInteger('str');
-            $table->unsignedSmallInteger('vit');
-            $table->unsignedSmallInteger('dex');
-            $table->unsignedSmallInteger('agi');
-            $table->unsignedSmallInteger('int');
-            $table->unsignedSmallInteger('mnd');
-            $table->unsignedSmallInteger('con');
-            $table->unsignedSmallInteger('dev');
-            $table->unsignedSmallInteger('dir');
-            $table->unsignedSmallInteger('exe');
-            $table->unsignedSmallInteger('det');
-            $table->unsignedSmallInteger('res');
-            $table->unsignedSmallInteger('luc');
-            $table->unsignedSmallInteger('gra');
-            $table->string('profile_img')->nullable();
-            $table->string('profile_mini', 100)->nullable();
+            $table->string('profile_title', 32)->nullable();
             $table->text('profile_txt')->nullable();
+            $table->string('profile_img')->nullable();
+            $table->unsignedBigInteger('level');
+            $table->unsignedBigInteger('hp');
+            $table->unsignedBigInteger('attack');
+            $table->unsignedBigInteger('defense');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->index(['name_first', 'name_last'], 'name');
+            $table->index('profile_title', 'profile_title');
         });
     }
 

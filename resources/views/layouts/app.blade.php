@@ -45,7 +45,7 @@
                         <!-- Authentication Links -->
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}">{{ __('プロフィール') }}</a>
+                                <a class="nav-link" href="{{ route('character.detail', ['id' => \Auth::id()]) }}">{{ __('プロフィール') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('chat.list') }}">{{ __('チャット') }}</a>
