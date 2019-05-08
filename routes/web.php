@@ -26,8 +26,8 @@ Route::get('/', 'Front\HomeController@index')->name('home');
 // キャラリスト・詳細
 Route::get('/list', 'Front\CharacterController@index')->name('character.list');
 Route::get('/character/{id}', 'Front\CharacterController@detail')->where(['id' => '[0-9]+'])->name('character.detail');
-Route::get('/character/{id}/settings', 'Front\CharacterController@detail')->where(['id' => '[0-9]+'])->name('character.settings');
-Route::get('/character/{id}/settings/turn', 'Front\CharacterController@detail')->where(['id' => '[0-9]+'])->name('character.turn.settings');
+Route::get('/character/{id}/settings', 'Front\CharacterController@settings')->where(['id' => '[0-9]+'])->name('character.settings');
+Route::get('/character/{id}/turn/settings', 'Front\TurnController@settings')->where(['id' => '[0-9]+'])->name('character.turn.settings');
 
 // チャット
 Route::get('/chat', 'Front\ChatController@index')->name('chat.list');
