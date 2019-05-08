@@ -30,8 +30,8 @@ class CreateCharactersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->index(['name_first', 'name_last'], 'name');
-            $table->index('profile_title', 'profile_title');
+            $table->index(['name_first', 'name_last'], 'characters_name');
+            $table->index('profile_title', 'characters_profile_title');
         });
     }
 
