@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Front;
 use App\Models\Chat;
 use App\Models\Character;
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Http\Request;
 use \App\Http\Requests\CharPost;
 use \App\Http\Requests\CharResPost;
+use Illuminate\Http\Response;
 
 class ChatController extends Controller
 {
@@ -23,15 +25,13 @@ class ChatController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index()
-    {
-        $chats = Chat::orderBy('id', 'dest')
-                ->paginate(5);
+    public function index() {
+        $chats = Chat::orderBy('id', 'desc')
+            ->paginate(5);
 
-        for ($i=0; $i < count($chats); $i++) {
+        for ($i = 0; $i < count($chats); $i++) {
             $res_id = $chats[$i]['res_char_id'];
             if (!is_null($res_id)) {
                 // 返信先のキャラクター名を取得
@@ -54,7 +54,7 @@ class ChatController extends Controller
                     $charcters[$j] = $charcters[$j]['char_id'];
                 }
                 $chats[$i]['tree_char_num'] = count($charcters);
-                $chats[$i]['is_tree_join'] = in_array(\Auth::user()->id, $charcters);
+                $chats[$i]['is_tree_join'] = in_array(Auth::user()->id, $charcters);
             } else {
                 $chats[$i]['res_char_name'] = null;
                 $chats[$i]['tree_char_num'] = 0;
@@ -65,7 +65,7 @@ class ChatController extends Controller
     }
 
     /**
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function tree($id)
     {
@@ -111,8 +111,9 @@ class ChatController extends Controller
     }
 
     /**
-     * @param  CharPost
-     * @return \Illuminate\Http\Response
+     * @param CharPost
+     *
+     * @return Response
      */
     public function postChat(CharPost $request)
     {
@@ -125,10 +126,10 @@ class ChatController extends Controller
         $chat = new Chat();
         $chat->fill([
             'own_chat_id' => 0,
-            'char_id' => \Auth::user()->id,
-            'name' => $data['chat']['name'],
-            'icon_img' => $icon_img,
-            'chat_txt' => $data['chat']['chat_txt']
+            'char_id'     => Auth::user()->id,
+            'name'        => $data['chat']['name'],
+            'icon_img'    => $icon_img,
+            'chat_txt'    => $data['chat']['chat_txt'],
         ]);
         $chat->save();
 
@@ -141,8 +142,8 @@ class ChatController extends Controller
     }
 
     /**
-     * @param  CharResPost
-     * @return \Illuminate\Http\Response
+     * @param CharResPost
+     * @return Response
      */
     public function postRes(CharResPost $request)
     {
@@ -167,10 +168,10 @@ class ChatController extends Controller
             'own_chat_id' => $res->own_chat_id,
             'res_chat_id' => $res->id,
             'res_char_id' => $res->char_id,
-            'char_id' => \Auth::user()->id,
-            'name' => $data['res']['name'],
-            'icon_img' => $icon_img,
-            'chat_txt' => $data['res']['chat_txt']
+            'char_id'     => Auth::user()->id,
+            'name'        => $data['res']['name'],
+            'icon_img'    => $icon_img,
+            'chat_txt'    => $data['res']['chat_txt'],
         ]);
         $chat->save();
 
@@ -179,14 +180,14 @@ class ChatController extends Controller
     }
 
     /**
-     * @param  Request
-     * @return \Illuminate\Http\Response
+     * @param Request
+     * @return Response
      */
     public function postDelete(Request $request)
     {
         $data = $request->all();
         $chat = Chat::find($data['chat']['delete_id']);
-        if (is_null($chat) || $chat->char_id != \Auth::user()->id) {
+        if (is_null($chat) || $chat->char_id != Auth::user()->id) {
             // 発言IDが存在しないか、発言者のIDがログインユーザと一致しなければ一覧画面へリダイレクト
             return redirect(route('chat.list'));
         }
