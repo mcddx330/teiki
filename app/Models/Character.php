@@ -20,8 +20,10 @@ class Character extends Authenticatable {
         'password',
         'level',
         'hp',
-        'attack',
+        'power',
         'defense',
+        'wizard',
+        'speed',
     ];
 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];

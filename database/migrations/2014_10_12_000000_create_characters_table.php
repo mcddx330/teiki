@@ -24,8 +24,10 @@ class CreateCharactersTable extends Migration
             $table->string('profile_img')->nullable();
             $table->unsignedBigInteger('level');
             $table->unsignedBigInteger('hp');
-            $table->unsignedBigInteger('attack');
+            $table->unsignedBigInteger('power');
             $table->unsignedBigInteger('defense');
+            $table->unsignedBigInteger('wizard');
+            $table->unsignedBigInteger('speed');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

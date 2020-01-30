@@ -1,15 +1,19 @@
 <table class="table table-striped border-bottom">
   <tr>
     <td><span class="mono-space">Lv：{{ $character->level }}</span></td>
-  </tr>
-  <tr>
     <td><span class="mono-space">HP：{{ $character->hp }}</span></td>
   </tr>
+</table>
+
+<p>■ステータス</p>
+<table class="table table-striped border-bottom">
   <tr>
-    <td><span class="mono-space">ATK：{{ $character->attack }}</span></td>
+    <td><span class="mono-space">POW：{{ $character->power }}</span></td>
+    <td><span class="mono-space">DEF：{{ $character->defense }}</span></td>
   </tr>
   <tr>
-    <td><span class="mono-space">DEF：{{ $character->defense }}</span></td>
+    <td><span class="mono-space">Wiz：{{ $character->wizard }}</span></td>
+    <td><span class="mono-space">SPD：{{ $character->speed }}</span></td>
   </tr>
 </table>
 <!--

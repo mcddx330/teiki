@@ -20,25 +20,25 @@
           <div class="card-body">
             <div class="row clearfix">
               <div class="col-md-6">
-                @if(!empty($character->profile_mini))
-                  <p>{{ $character->profile_mini }}</p>
-                @endif
-                <p>■ステータス</p>
-                @include('character.partials.status')
-
-                {{-- ログイン中は各種設定表示 --}}
-                @if (\Auth::check() && \Auth::id() === $character->id)
-                  <a href="{{route('character.settings', ['id' => $character->id])}}">基本設定</a>
-                  <a href="{{route('character.turn.settings', ['id' => $character->id])}}">行動設定</a>
-                @endif
-
-              </div>
-              <div class="col-md-6">
                 @if(empty($character->profile_img))
                   <img src="/img/no_image_prof.png" alt="no image">
                 @else
                   <img src="{{ $character->profile_img }}" alt="キャラクター画像">
                 @endif
+              </div>
+              <div class="col-md-6">
+                @if(!empty($character->profile_mini))
+                  <p>{{ $character->profile_mini }}</p>
+                @endif
+
+                @include('character.partials.status')
+
+                {{-- ログイン中は各種設定表示 --}}
+                @if (Auth::check() && Auth::id() === $character->id)
+                  <a href="{{route('character.settings', ['id' => $character->id])}}">基本設定</a>
+                  <a href="{{route('character.turn.settings', ['id' => $character->id])}}">行動設定</a>
+                @endif
+
               </div>
             </div>
 
