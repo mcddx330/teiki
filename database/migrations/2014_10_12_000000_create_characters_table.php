@@ -17,7 +17,7 @@ class CreateCharactersTable extends Migration
             $table->increments('id');
             $table->string('name_first', 16);
             $table->string('name_last', 16);
-            $table->boolean('is_not_foreigner')->default(0);
+            $table->boolean('is_foreigner')->default(0);
             $table->string('password', 60);
             $table->string('profile_title', 32)->nullable();
             $table->text('profile_txt')->nullable();

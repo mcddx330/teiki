@@ -11,15 +11,15 @@ class CharactersSeeder extends Seeder {
      */
     public function run() {
         return App\Models\Character::create([
-            'name_first'       => '太郎',
-            'name_last'        => 'テスト',
-            'is_not_foreigner' => true,
-            'password'         => Hash::make('asdf'),
-            'profile_title'    => CharacterStatusEnum::DEFAULT_TITLE,
-            'level'            => CharacterStatusEnum::DEFAULT_LEVEL,
-            'hp'               => CharacterStatusEnum::DEFAULT_HP,
-            'attack'           => CharacterStatusEnum::DEFAULT_ATTACK,
-            'defense'          => CharacterStatusEnum::DEFAULT_DEFENSE,
+            'name_first'    => '太郎',
+            'name_last'     => 'テスト',
+            'is_foreigner'  => false,
+            'password'      => Hash::make('asdf'),
+            'profile_title' => CharacterStatusEnum::DEFAULT_TITLE,
+            'level'         => CharacterStatusEnum::DEFAULT_LEVEL,
+            'hp'            => CharacterStatusEnum::DEFAULT_HP,
+            'attack'        => CharacterStatusEnum::DEFAULT_ATTACK,
+            'defense'       => CharacterStatusEnum::DEFAULT_DEFENSE,
         ]);
     }
 }

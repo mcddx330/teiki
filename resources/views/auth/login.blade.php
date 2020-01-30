@@ -68,6 +68,15 @@
 
                 <div class="col-md-8 row">
                   <div class="col-6">
+                    <input id="register_name" type="text" class="form-control{{ $errors->has('register.name.last') ? ' is-invalid' : '' }}"
+                           name="register[name][last]" value="{{ old('register.name.last') }}" placeholder="名前（姓）" required>
+                  </div>
+                  @if ($errors->has('register.name.last'))
+                    <span class="invalid-feedback register_name" role="alert">
+                      <strong>{{ $errors->first('register.name.last') }}</strong>
+                    </span>
+                  @endif
+                  <div class="col-6">
                     <input id="register_name" type="text" class="form-control{{ $errors->has('register.name.first') ? ' is-invalid' : '' }}"
                            name="register[name][first]" value="{{ old('register.name.first') }}" placeholder="名前（名）" required
                            autofocus>
@@ -75,15 +84,6 @@
                   @if ($errors->has('register.name.first'))
                     <span class="invalid-feedback register_name" role="alert">
                       <strong>{{ $errors->first('register.name.first') }}</strong>
-                    </span>
-                  @endif
-                  <div class="col-6">
-                    <input id="register_name" type="text" class="form-control{{ $errors->has('register.name.last') ? ' is-invalid' : '' }}"
-                           name="register[name][last]" value="{{ old('register.name.last') }}" placeholder="名前（姓）" required>
-                  </div>
-                  @if ($errors->has('register.name.last'))
-                    <span class="invalid-feedback register_name" role="alert">
-                      <strong>{{ $errors->first('register.name.last') }}</strong>
                     </span>
                   @endif
                 </div>
@@ -95,14 +95,14 @@
                 <div class="col-md-8 row">
                   <div class="col-md-12">
                     <label>{!! Form::checkbox(
-                    'is_not_foreigner',
+                    'is_foreigner',
                     0,
                     null,
                     [
-                      'id' => 'is_',
+                      'id' => 'is_foreigner',
                       'class' => 'form-control',
                     ])
-                  !!} 日本名（姓・名が反対に表示されます）</label>
+                  !!} 洋名（姓・名が反対に表示されます）</label>
                   </div>
                 </div>
               </div>
@@ -112,18 +112,18 @@
                 <label for="register_password" class="col-md-4 col-form-label text-md-right">{{ __('パスワード') }}</label>
 
                 <div class="col-md-6">
-                  {!! Form::password(
-                    'register[password]', [
-                      'id' => 'register_password',
-                      'class' => array_merge(
-                        ['form-control'],
-                        ($errors->has('register.password'))
-                          ? ['is_invalid']
-                          : []
-                      )
-                    ]) !!}
+                {!! Form::password(
+                  'register[password]', [
+                    'id' => 'register_password',
+                    'class' => array_merge(
+                      ['form-control'],
+                      ($errors->has('register.password'))
+                        ? ['is_invalid']
+                        : []
+                    )
+                  ]) !!}
 
-                  <!--
+                <!--
                   <input id="register_password" type="password"
                          class="form-control{{ $errors->has('register.password') ? ' is-invalid' : '' }}" name="register[password]"
                          required>

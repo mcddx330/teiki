@@ -15,7 +15,7 @@ class Character extends Authenticatable {
     protected $fillable = [
         'name_first',
         'name_last',
-        'is_not_foreigner',
+        'is_foreigner',
         'profile_title',
         'password',
         'level',
@@ -39,8 +39,8 @@ class Character extends Authenticatable {
      * @return string
      */
     public function getNameFullAttribute(): string {
-        return ((bool)$this->is_not_foreigner)
-            ? sprintf('%s・%s', $this->name_last, $this->name_first)
-            : sprintf('%s・%s', $this->name_first, $this->name_last);
+        return ((bool)$this->is_foreigner)
+            ? sprintf('%s・%s', $this->name_first, $this->name_last)
+            : sprintf('%s・%s', $this->name_last, $this->name_first);
     }
 }

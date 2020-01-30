@@ -6,6 +6,7 @@ use App\Enum\Status\CharacterStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Character;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,7 @@ class RegisterController extends Controller {
      * Where to redirect users after registration.
      * @var string
      */
-//    protected $redirectTo = '/';
+    //    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -40,7 +41,7 @@ class RegisterController extends Controller {
 
     /**
      * Show the application registration form.
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function showRegistrationForm() {
         return view('auth.login');
@@ -55,10 +56,10 @@ class RegisterController extends Controller {
      */
     protected function validator(array $data) {
         return Validator::make($data, [
-            'register.name.first'       => 'required|string|max:16',
-            'register.name.last'        => 'required|string|max:16',
-//            'register.password'         => 'required|string|min:6|confirmed',
-            'register.is_not_foreigner' => 'nullable|numeric|digits:1',
+            'register.name.first'   => 'required|string|max:16',
+            'register.name.last'    => 'required|string|max:16',
+            //            'register.password'         => 'required|string|min:6|confirmed',
+            'register.is_foreigner' => 'nullable|numeric|digits:1',
         ]);
     }
 
@@ -71,15 +72,15 @@ class RegisterController extends Controller {
      */
     protected function create(array $data) {
         return Character::create([
-            'name_first'       => $data['register']['name']['first'],
-            'name_last'        => $data['register']['name']['last'],
-            'is_not_foreigner' => (isset($data['is_not_foreigner'])),
-            'password'         => Hash::make($data['register']['password']),
-            'profile_title'    => CharacterStatusEnum::DEFAULT_TITLE,
-            'level'            => CharacterStatusEnum::DEFAULT_LEVEL,
-            'hp'               => CharacterStatusEnum::DEFAULT_HP,
-            'attack'           => CharacterStatusEnum::DEFAULT_ATTACK,
-            'defense'          => CharacterStatusEnum::DEFAULT_DEFENSE,
+            'name_first'    => $data['register']['name']['first'],
+            'name_last'     => $data['register']['name']['last'],
+            'is_foreigner'  => (isset($data['is_foreigner'])),
+            'password'      => Hash::make($data['register']['password']),
+            'profile_title' => CharacterStatusEnum::DEFAULT_TITLE,
+            'level'         => CharacterStatusEnum::DEFAULT_LEVEL,
+            'hp'            => CharacterStatusEnum::DEFAULT_HP,
+            'attack'        => CharacterStatusEnum::DEFAULT_ATTACK,
+            'defense'       => CharacterStatusEnum::DEFAULT_DEFENSE,
         ]);
     }
 
